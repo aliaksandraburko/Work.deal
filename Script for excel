@@ -1,0 +1,18 @@
+function doGet(e) {
+  var params = JSON.parse(JSON.stringify(e));
+  
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getActiveSheet();
+  var dataRange = sheet.getDataRange();
+  var values = dataRange.getValues();
+  var row = "";
+  for (var i = 0; i < values.length; i++) {
+    for (var j = 0; j < values[i].length; j++) {
+      if (values[i][j] == params.parameters.e) {
+        row = values[i];
+      }
+    }
+  }
+  var res = 'Клики: ' + row[13] + '\nБюджет: ' + row[14].split('(')[1].replace(')','') + '\nпросмотров контактов: ' + row[15].split('/')[0] + '\nсообщений: ' + row[15].split('/')[1] + '\nзаказов через корзину: ' + row[15].split('/')[2] + '\nобратных звонков: ' + row[15].split('/')[3].split('(')[0] + '\nср. % конв : ' + row[15].split('/')[3].split('(')[1].replace(')','') + '\nРК длится: ' + row[16].replace('↑','') + ' дней' + '\nС такой интенсивностью будет длиться: ' + row[17].replace('↓','') + ' дней';
+  return ContentService.createTextOutput(res.toString()).setMimeType(ContentService.MimeType.JAVASCRIPT);
+}
