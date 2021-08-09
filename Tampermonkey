@@ -1,0 +1,16 @@
+// ==UserScript==
+// @name         New Userscript
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://my.deal.by/agency/market_place/show_service_task/19870
+// @icon         https://www.google.com/s2/favicons?domain=deal.by
+// @grant        none
+// ==/UserScript==
+
+$('.b-bg-wrapper_type_buttons').children('.h-inline-block').after('<input class="b-button" id="integrate" name="integrate" style="margin-left:5px;" value="Промежуточный отчет">');
+
+$("#integrate").click(function(){
+    window.open('https://script.google.com/a/macros/smartweb.com.ua/s/AKfycbwaqdWvUFhcLeW6S3LrLfaa9E5lHnBnQ3p2StfLiyuNh2TN_I_vjWsEfuNbAzl4GvHKGQ/exec?e='+window.location.href, '_blank');
+});
